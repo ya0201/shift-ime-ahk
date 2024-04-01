@@ -229,3 +229,40 @@ is_target()
   Else
     Send {End}
   Return
+
+;
+; https://qiita.com/suemoc/items/9ca95609a622c38c0e24
+;
+Space & q::Send {p}
+Space & w::Send {o}
+Space & e::Send {i}
+Space & r::Send {u}
+Space & t::Send {y}
+Space & p::Send {q}
+Space & o::Send {w}
+Space & i::Send {e}
+Space & u::Send {r}
+Space & y::Send {t}
+
+Space & a::Send {`;}
+Space & s::Send {l}
+Space & d::Send {k}
+Space & f::Send {j}
+Space & g::Send {h}
+Space & `;::Send {a}
+Space & l::Send {s}
+Space & k::Send {d}
+Space & j::Send {f}
+Space & h::Send {g}
+
+Space & z::Send {/}
+Space & x::Send {.}
+Space & c::Send {,}
+Space & v::Send {m}
+Space & b::Send {n}
+Space & /::Send {z}
+Space & .::Send {x}
+Space & ,::Send {c}
+Space & m::Send {v}
+Space & n::Send {b}
+$Space::Send {Space}
