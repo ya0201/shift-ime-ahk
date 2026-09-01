@@ -107,8 +107,8 @@
     Return
 
 ; 上部メニューがアクティブになるのを抑制
- *~LShift::Send {Blind}{vk07}
- *~RShift::Send {Blind}{vk07}
+; *~LShift::Send {Blind}{vk07}
+; *~RShift::Send {Blind}{vk07}
  *~LCtrl::Send {Blind}{vk07}
 
 ; 左 Shift 空打ちで IME を OFF
