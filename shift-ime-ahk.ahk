@@ -11,128 +11,25 @@
 ; Razer Synapseなど、キーカスタマイズ系のツールを併用しているときのエラー対策
 #MaxHotkeysPerInterval 350
 
-; 主要なキーを HotKey に設定し、何もせずパススルーする
-*~a::
-*~b::
-*~c::
-*~d::
-*~e::
-*~f::
-*~g::
-*~h::
-*~i::
-*~j::
-*~k::
-*~l::
-*~m::
-*~n::
-*~o::
-*~p::
-*~q::
-*~r::
-*~s::
-*~t::
-*~u::
-*~v::
-*~w::
-*~x::
-*~y::
-*~z::
-*~1::
-*~2::
-*~3::
-*~4::
-*~5::
-*~6::
-*~7::
-*~8::
-*~9::
-*~0::
-*~F1::
-*~F2::
-*~F3::
-*~F4::
-*~F5::
-*~F6::
-*~F7::
-*~F8::
-*~F9::
-*~F10::
-*~F11::
-*~F12::
-*~`::
-*~~::
-*~!::
-*~@::
-*~#::
-*~$::
-*~%::
-*~&::
-*~*::
-*~(::
-*~)::
-*~-::
-*~_::
-*~=::
-*~+::
-*~[::
-*~{::
-*~]::
-*~}::
-*~\::
-*~|::
-*~;::
-*~'::
-*~"::
-*~,::
-*~<::
-*~.::
-*~>::
-*~/::
-*~?::
-*~Esc::
-*~Tab::
-*~Space::
-*~Left::
-*~Right::
-*~Up::
-*~Down::
-*~Enter::
-*~PrintScreen::
-*~Delete::
-*~Home::
-*~End::
-*~PgUp::
-*~PgDn::
-    Return
-
-; Shift の空打ち判定用。ダミーキーを Send すると Shift 併用入力と干渉することがある。
-*~LShift::
-*~RShift::
-    Return
-
-; 上部メニューがアクティブになるのを抑制
- *~LCtrl::Send {Blind}{vk07}
-
 ; 左 Shift 空打ちで IME を OFF
-LShift up::
-    if (A_PriorHotkey == "*~LShift")
+~LShift up::
+    if (A_PriorKey == "LShift")
     {
         IME_SET(0)
     }
     Return
 
 ; 右 Shift 空打ちで IME を ON
-RShift up::
-    if (A_PriorHotkey == "*~RShift")
+~RShift up::
+    if (A_PriorKey == "RShift")
     {
         IME_SET(1)
     }
     Return
 
 ; 左 Ctrl 空打ちで Esc
-LCtrl up::
-    if (A_PriorHotkey == "*~LCtrl")
+~LCtrl up::
+    if (A_PriorKey == "LControl" or A_PriorKey == "LCtrl")
     {
         Send {Esc}
     }
