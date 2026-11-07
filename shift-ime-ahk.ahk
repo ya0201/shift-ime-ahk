@@ -10,25 +10,23 @@
 #Include "IME.ahk"
 
 ; Razer Synapseなど、キーカスタマイズ系のツールを併用しているときのエラー対策
-#MaxHotkeysPerInterval 350
-#InstallKeybdHook
-#UseHook
+A_MaxHotkeysPerInterval := 350
 
 SetKeyDelay(0)
 
-~LShift Up::
+~$LShift Up::
 {
     if (A_PriorKey = "LShift")
         IME_SET(0)
 }
 
-~RShift Up::
+~$RShift Up::
 {
     if (A_PriorKey = "RShift")
         IME_SET(1)
 }
 
-~LCtrl Up::
+~$LCtrl Up::
 {
     if (A_PriorKey = "LControl" || A_PriorKey = "LCtrl")
         Send("{Esc}")
@@ -45,7 +43,7 @@ is_target()
         || WinActive("ahk_class Vim")
 }
 
-^p::
+$^p::
 {
     if is_target()
         Send(A_ThisHotkey)
@@ -53,7 +51,7 @@ is_target()
         Send("{Up}")
 }
 
-^n::
+$^n::
 {
     if is_target()
         Send(A_ThisHotkey)
@@ -61,7 +59,7 @@ is_target()
         Send("{Down}")
 }
 
-^a::
+$^a::
 {
     if is_target()
         Send(A_ThisHotkey)
@@ -69,7 +67,7 @@ is_target()
         Send("{Home}")
 }
 
-+^a::
+$+^a::
 {
     if is_target()
         Send(A_ThisHotkey)
@@ -77,7 +75,7 @@ is_target()
         Send("^a")
 }
 
-^e::
+$^e::
 {
     if is_target()
         Send(A_ThisHotkey)
