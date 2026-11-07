@@ -10,11 +10,12 @@
 
 ## 動作環境
 
-* Windows10
+* Windows 10 / 11
+* AutoHotkey v2.0 以降
 
 ## 使い方
 
-システムにautohotkeyを入れ、shift-ime-ahk.ahkをcompileすることで出来る shift-ime-ahk.exe をスタートアップに登録します。
+システムに [AutoHotkey v2](https://www.autohotkey.com/) を入れ、`shift-ime-ahk.ahk` を実行するか、v2 の Ahk2Exe でコンパイルしてできる `shift-ime-ahk.exe` をスタートアップに登録します。
 
 終了する場合はタスクトレイのアイコンを右クリックし、「終了」をクリックしてください。
 

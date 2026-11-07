@@ -1,131 +1,86 @@
+#Requires AutoHotkey v2.0
+#SingleInstance Force
+
 ; 左右 Shift キーの空打ちで IME の OFF/ON を切り替える
 ;
 ; 左 Shift キーの空打ちで IME を「英数」に切り替え
 ; 右 Shift キーの空打ちで IME を「かな」に切り替え
 ; Shift キーを押している間に他のキーを打つと通常の Shift キーとして動作
-;
-; Author:     karakaram   http://www.karakaram.com/alt-ime-on-off
 
-#Include IME.ahk
+#Include "IME.ahk"
 
 ; Razer Synapseなど、キーカスタマイズ系のツールを併用しているときのエラー対策
 #MaxHotkeysPerInterval 350
-
-; 左 Shift 空打ちで IME を OFF
-~LShift up::
-    if (A_PriorKey == "LShift")
-    {
-        IME_SET(0)
-    }
-    Return
-
-; 右 Shift 空打ちで IME を ON
-~RShift up::
-    if (A_PriorKey == "RShift")
-    {
-        IME_SET(1)
-    }
-    Return
-
-; 左 Ctrl 空打ちで Esc
-~LCtrl up::
-    if (A_PriorKey == "LControl" or A_PriorKey == "LCtrl")
-    {
-        Send {Esc}
-    }
-    Return
-
-;;
-;; An autohotkey script that provides gtk-emacs-key-theme like keybinding on Windows
-;; forked from https://github.com/usi3/emacs.ahk
-;;
 #InstallKeybdHook
 #UseHook
 
-; The following line is a contribution of NTEmacs wiki http://www49.atwiki.jp/ntemacs/pages/20.html
-SetKeyDelay 0
+SetKeyDelay(0)
 
-; Applications you want to disable emacs-like keybindings
-; (Please comment out applications you don't use)
-is_target()
+~LShift Up::
 {
-  IfWinActive,ahk_class ConsoleWindowClass ; Cygwin
-    Return 1
-  IfWinActive,ahk_class MEADOW ; Meadow
-    Return 1
-  IfWinActive,ahk_class cygwin/x X rl-xterm-XTerm-0
-    Return 1
-  IfWinActive,ahk_class MozillaUIWindowClass ; keysnail on Firefox
-    Return 1
-  ; Avoid VMwareUnity with AutoHotkey
-  IfWinActive,ahk_class VMwareUnityHostWndClass
-    Return 1
-  IfWinActive,ahk_class Vim ; GVIM
-    Return 1
-;  IfWinActive,ahk_class SWT_Window0 ; Eclipse
-;    Return 1
-;   IfWinActive,ahk_class Xming X
-;     Return 1
-;   IfWinActive,ahk_class SunAwtFrame
-;     Return 1
-;   IfWinActive,ahk_class Emacs ; NTEmacs
-;     Return 1
-;   IfWinActive,ahk_class XEmacs ; XEmacs on Cygwin
-;     Return 1
-  Return 0
+    if (A_PriorKey = "LShift")
+        IME_SET(0)
 }
 
-;
-; <ctrl>p
-; move cursor up
-;
+~RShift Up::
+{
+    if (A_PriorKey = "RShift")
+        IME_SET(1)
+}
+
+~LCtrl Up::
+{
+    if (A_PriorKey = "LControl" || A_PriorKey = "LCtrl")
+        Send("{Esc}")
+}
+
+; Applications you want to disable emacs-like keybindings.
+is_target()
+{
+    return WinActive("ahk_class ConsoleWindowClass")
+        || WinActive("ahk_class MEADOW")
+        || WinActive("ahk_class cygwin/x X rl-xterm-XTerm-0")
+        || WinActive("ahk_class MozillaUIWindowClass")
+        || WinActive("ahk_class VMwareUnityHostWndClass")
+        || WinActive("ahk_class Vim")
+}
+
 ^p::
-  If is_target()
-    Send %A_ThisHotkey%
-  Else
-    Send {Up}
-  Return
+{
+    if is_target()
+        Send(A_ThisHotkey)
+    else
+        Send("{Up}")
+}
 
-;
-; <ctrl>n
-; move cursor down
-;
 ^n::
-  If is_target()
-    Send %A_ThisHotkey%
-  Else
-    Send {Down}
-  Return
+{
+    if is_target()
+        Send(A_ThisHotkey)
+    else
+        Send("{Down}")
+}
 
-;
-; <ctrl>a
-; move cursor beginning of current line
-;
 ^a::
-  If is_target()
-    Send %A_ThisHotkey%
-  Else
-    Send {Home}
-  Return
+{
+    if is_target()
+        Send(A_ThisHotkey)
+    else
+        Send("{Home}")
+}
 
-;
-; <shift><ctrl>a
-; select all
-;
 +^a::
-  If is_target()
-    Send %A_ThisHotkey%
-  Else
-    Send ^a
-  Return
+{
+    if is_target()
+        Send(A_ThisHotkey)
+    else
+        Send("^a")
+}
 
-;
-; <ctrl>e
-; move cursor end of current line
-;
 ^e::
-  If is_target()
-    Send %A_ThisHotkey%
-  Else
-    Send {End}
-  Return
+{
+    if is_target()
+        Send(A_ThisHotkey)
+    else
+        Send("{End}")
+}
