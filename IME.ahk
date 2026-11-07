@@ -43,7 +43,7 @@ IME_SendMessage(command, parameter, WinTitle)
 
 IME_GetTargetHwnd(WinTitle)
 {
-    hwnd := ControlGetHwnd(, WinTitle)
+    hwnd := WinExist(WinTitle)
     if !WinActive(WinTitle)
         return hwnd
 
